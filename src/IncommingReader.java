@@ -1,3 +1,4 @@
+import shared.messages.Message;
 import shared.messages.server.UsersMessage;
 import shared.messages.server.WhiteboardMessage;
 
@@ -32,20 +33,23 @@ public class IncommingReader implements Runnable{
         try{
             while((object = reader.readObject()) != null){
 
-                if(object instanceof WhiteboardMessage){
-                    System.out.println("whiteboard message recieved");
-                    client.addIncomingWhiteboard((WhiteboardMessage)object);
-                }
-                else if(object instanceof UsersMessage){
-                    client.addIncomingUsers((UsersMessage)object);
-                }
-                else{
+                if(object instanceof WhiteboardMessage || object instanceof  UsersMessage){
+                    System.out.println(object.getClass().getSimpleName()+ " message recieved");
+                    client.addIncoming((Message)object);
+                } else{
                     System.out.println("illegal message type: " + object.getClass().getSimpleName());
                 }
             }
         }
         catch (Exception e){
             e.printStackTrace();
+        }
+        finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

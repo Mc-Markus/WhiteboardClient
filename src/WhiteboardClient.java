@@ -1,7 +1,6 @@
 import shared.messages.Message;
 import shared.messages.client.InitialMessage;
-import shared.messages.server.UsersMessage;
-import shared.messages.server.WhiteboardMessage;
+import shared.messages.client.StopMessage;
 import shared.model.User;
 
 import java.io.IOException;
@@ -29,6 +28,7 @@ public class WhiteboardClient extends Observable {
         new IncommingReader(socket, this);
     }
 
+    //sets up the networking
     public void setUpNetworking(String address, int port){
 
         try {
@@ -40,13 +40,25 @@ public class WhiteboardClient extends Observable {
         }
     }
 
+    //sends the message to the server
     public void sendMessage(Message message){
         try {
-            writer.writeObject( message);
-            writer.flush();
+            synchronized (writer){
+                writer.writeObject( message);
+                writer.flush();
+            }
             System.out.println("message send");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        //closes writer after sending stopmessage
+        if(message instanceof StopMessage){
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -54,13 +66,13 @@ public class WhiteboardClient extends Observable {
         return user.getName();
     }
 
-    public void addIncomingUsers(UsersMessage message){
+    //notifies the view to show the message
+    public void addIncoming(Message message){
         setChanged();
         notifyObservers(message);
     }
 
-    public void addIncomingWhiteboard(WhiteboardMessage message){
-        setChanged();
-        notifyObservers(message);
+    public User getUser() {
+        return user;
     }
 }
