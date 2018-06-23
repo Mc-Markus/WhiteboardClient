@@ -1,6 +1,6 @@
 package shared.model.drawing;
 
-import java.awt.Color;
+import java.awt.*;
 
 public abstract class ColorChange implements Action
 {

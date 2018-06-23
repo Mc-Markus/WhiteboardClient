@@ -33,6 +33,9 @@ public class DrawingSelector implements ActionListener{
             case "LINE":
                 changeListener(new LineController(client));
                 break;
+            case "TEXT":
+                changeListener(new TextController(client));
+                break;
         }
     }
 }

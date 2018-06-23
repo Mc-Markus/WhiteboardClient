@@ -89,7 +89,12 @@ public class WhiteboardClientView extends JFrame implements Observer{
         lineButton.setActionCommand("LINE");
         lineButton.addActionListener(controller);
 
+        JButton textButton = new JButton("Text");
+        textButton.setActionCommand("TEXT");
+        textButton.addActionListener(controller);
+
         toolPanel.add(lineButton);
+        toolPanel.add(textButton);
     }
 
     @Override

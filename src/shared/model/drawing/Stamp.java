@@ -1,6 +1,6 @@
 package shared.model.drawing;
 
-import java.awt.Point;
+import java.awt.*;
 
 public class Stamp extends Drawing
 {
@@ -17,5 +17,10 @@ public class Stamp extends Drawing
     public boolean[][] getStamp()
     {
         return stamp;
+    }
+
+    @Override
+    public void draw(Graphics graphics) {
+
     }
 }
