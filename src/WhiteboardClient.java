@@ -30,7 +30,6 @@ public class WhiteboardClient extends Observable {
 
     //sets up the networking
     public void setUpNetworking(String address, int port){
-
         try {
             socket = new Socket(address, port);
             writer = new ObjectOutputStream(socket.getOutputStream());

@@ -57,22 +57,22 @@ public class WhiteboardClientView extends JFrame implements Observer{
 
         setVisible(false);
         this.remove(settingsPanel);
-        System.out.println("gui remove");
+        System.out.println("gui removed");
 
         setTitle("Whiteboard chat client " + client.getName());
 
         setMinimumSize(SCREENSIZE);
-        //setMaximumSize(SCREENSIZE);
+        setMaximumSize(SCREENSIZE);
         setPreferredSize(SCREENSIZE);
 
         whiteboardPanel = new WhiteboardView();
-        usersPanel = new JPanel();
         toolPanel = new JPanel();
 
         DrawingSelector controller = new DrawingSelector(client, this, whiteboardPanel);
         makeToolPanel(toolPanel, controller);
 
         usersPanel.setBackground(Color.orange);
+        usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.X_AXIS));
 
         setLayout( new BorderLayout());
         this.add(whiteboardPanel, BorderLayout.CENTER);
@@ -146,21 +146,17 @@ public class WhiteboardClientView extends JFrame implements Observer{
     public void ShowUsers(List<User> users){
         usersPanel.setVisible(false);
         usersPanel.removeAll();
-        usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.X_AXIS));
 
-        synchronized (usersPanel){
-            for (User user: users){
-                System.out.println(user.getName());
-                JPanel userPanel = new JPanel();
-                userPanel.setBackground(user.getColor());
-                JLabel nameLabel = new JLabel(user.getName());
-                userPanel.add(nameLabel);
+        for (User user: users){
+            System.out.println(user.getName());
+            JPanel userPanel = new JPanel();
+            userPanel.setBackground(user.getColor());
+            JLabel nameLabel = new JLabel(user.getName());
+            userPanel.add(nameLabel);
 
-                usersPanel.add(userPanel);
-            }
+            usersPanel.add(userPanel);
         }
         usersPanel.setVisible(true);
-
     }
 
     //sets up the connetion to the server
