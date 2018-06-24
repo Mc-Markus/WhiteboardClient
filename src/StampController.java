@@ -4,7 +4,6 @@ import shared.model.drawing.Stamp;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -17,12 +16,12 @@ public class StampController implements DrawingController, MouseListener {
     private Point location;
     private boolean[][] stamp;
 
-    private final String SQUAREPATH = "/stamps/blokje.stp";
-    private final String CIRCLEPATH = "/stamps/cirkel.stp";
-    private final String RINGPATH = "/stamps/rondje.stp";
-    private final String SMILEYPATH = "/stamps/smiley.stp";
-    private final String SOLIDPATH = "/stamps/solid.stp";
-    private final String LIEPATH = "stamps/TheLie.stp";
+    private final String SQUAREPATH = "/Recourses/blokje.stp";
+    private final String CIRCLEPATH = "/Recourses/cirkel.stp";
+    private final String RINGPATH = "/Recourses/rondje.stp";
+    private final String SMILEYPATH = "/Recourses/smiley.stp";
+    private final String SOLIDPATH = "/Recourses/solid.stp";
+    private final String LIEPATH = "Recourses/TheLie.stp";
 
 
     public StampController(WhiteboardClient client, String stampType) {

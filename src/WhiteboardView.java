@@ -24,7 +24,8 @@ public class WhiteboardView extends JPanel{
         super.paintComponents(g);
 
         System.out.println("painting");
-        g.drawImage(image, 0,0, image.getWidth(null), image.getHeight(null), null);
-
+        synchronized (image){
+            g.drawImage(image, 0,0, image.getWidth(null), image.getHeight(null), null);
+        }
     }
 }
