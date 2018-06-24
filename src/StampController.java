@@ -17,12 +17,12 @@ public class StampController implements DrawingController, MouseListener {
     private Point location;
     private boolean[][] stamp;
 
-    private final String SQUAREPATH = "/stamps/blokje.stp";
-    private final String CIRCLEPATH = "/stamps/cirkel.stp";
-    private final String RINGPATH = "/stamps/rondje.stp";
-    private final String SMILEYPATH = "/stamps/smiley.stp";
-    private final String SOLIDPATH = "/stamps/solid.stp";
-    private final String LIEPATH = "/stamps/TheLie.stp";
+    private final String SQUAREPATH = "/blokje.stp";
+    private final String CIRCLEPATH = "/cirkel.stp";
+    private final String RINGPATH = "/rondje.stp";
+    private final String SMILEYPATH = "/smiley.stp";
+    private final String SOLIDPATH = "/solid.stp";
+    private final String LIEPATH = "/TheLie.stp";
 
 
     public StampController(WhiteboardClient client, String stampType) {
