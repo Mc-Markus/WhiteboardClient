@@ -10,9 +10,7 @@ public class WhiteboardView extends JPanel{
 
     private Image image;
 
-    public WhiteboardView(){
-        setBounds(5,  5, 640, 480);
-    }
+    public WhiteboardView(){}
 
     public void draw(WhiteboardMessage message){
         image = message.getImage();
