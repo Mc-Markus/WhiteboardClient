@@ -24,6 +24,7 @@ public class StampController implements DrawingController, MouseListener {
     private final String LIEPATH = "Recourses/TheLie.stp";
 
 
+    //selects the correct stamp
     public StampController(WhiteboardClient client, String stampType) {
         this.client = client;
 
@@ -49,15 +50,14 @@ public class StampController implements DrawingController, MouseListener {
         }
     }
 
-
-    @Override
+    //sends the drawing to the client
     public void sendDrawing() {
         Stamp drawing = new Stamp(location, stamp);
         drawing.setKleur(client.getUser().getColor());
         client.sendMessage(new DrawingMessage(client.getUser(), drawing));
     }
 
-
+    //registers the location of the stamp
     @Override
     public void mouseClicked(MouseEvent e) {
         location = e.getPoint();
@@ -84,6 +84,7 @@ public class StampController implements DrawingController, MouseListener {
 
     }
 
+    //loads the correct stamp
     public void loadStamp(String path){
         try {
             //ObjectInputStream input = new ObjectInputStream(new FileInputStream(path));

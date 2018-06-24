@@ -18,15 +18,16 @@ public class DrawingSelector implements ActionListener{
         this.whiteboardPanel = whiteboardView;
     }
 
+    //changes the current mouselistener
     private void changeListener(MouseListener listener){
         whiteboardPanel.removeMouseListener(controller);
         controller = listener;
         whiteboardPanel.addMouseListener(controller);
     }
 
+    //detects which button was pressed and activates corresponding listener
     @Override
     public void actionPerformed(ActionEvent e) {
-        //send message
         System.out.println(e.getActionCommand());
 
         switch (e.getActionCommand()){

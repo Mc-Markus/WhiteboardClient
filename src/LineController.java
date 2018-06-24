@@ -18,6 +18,7 @@ public class LineController implements DrawingController, MouseListener {
         this.client = client;
     }
 
+    //sends the drawing to the client
     public void sendDrawing(){
         Line line = new Line(start, end);
         line.setKleur(client.getUser().getColor());
@@ -30,11 +31,13 @@ public class LineController implements DrawingController, MouseListener {
 
     }
 
+    //registers the starting location
     @Override
     public void mousePressed(MouseEvent e) {
         this.start = e.getPoint();
     }
 
+    //registers the end location
     @Override
     public void mouseReleased(MouseEvent e) {
         this.end = e.getPoint();

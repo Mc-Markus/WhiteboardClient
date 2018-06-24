@@ -19,13 +19,14 @@ public class TextController implements DrawingController, MouseListener{
         this.client = client;
     }
 
-    @Override
+    //sends the drawing to the client
     public void sendDrawing() {
         TextDrawing textDrawing = new TextDrawing(location, text);
         textDrawing.setKleur(client.getUser().getColor());
         client.sendMessage(new DrawingMessage(client.getUser(), textDrawing));
     }
 
+    //registers the pressed location and asks for the text that should be send
     @Override
     public void mouseClicked(MouseEvent e) {
         location = e.getPoint();
@@ -33,11 +34,9 @@ public class TextController implements DrawingController, MouseListener{
         Object object = JOptionPane.showInputDialog(null, "Enter your message:", "Write message",
                 JOptionPane.PLAIN_MESSAGE, null, null, "");
 
-        if(object!= null){
+        if(((String)object).length() > 0){
             text = (String)object;
-            if(text.length() > 0){
-                sendDrawing();
-            }
+            sendDrawing();
         }
     }
 
