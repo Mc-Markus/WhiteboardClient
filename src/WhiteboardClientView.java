@@ -21,7 +21,7 @@ public class WhiteboardClientView extends JFrame implements Observer{
     private JPanel toolPanel;
     private WhiteboardClient client;
 
-    private final Dimension SCREENSIZE = new Dimension(700,540);
+    private final Dimension SCREENSIZE = new Dimension(750,540);
 
     public static void main(String[] args){
         new WhiteboardClientView();
@@ -38,6 +38,7 @@ public class WhiteboardClientView extends JFrame implements Observer{
         this.setVisible(true);
     }
 
+    //this method is responsible for the correct closing of the connection with the server
     public void stopOnClose(){
         this.addWindowListener(new java.awt.event.WindowAdapter(){
             @Override
@@ -51,6 +52,7 @@ public class WhiteboardClientView extends JFrame implements Observer{
         });
     }
 
+    //Makes the gui
     public void maakGUI(){
 
         setVisible(false);
@@ -59,9 +61,9 @@ public class WhiteboardClientView extends JFrame implements Observer{
 
         setTitle("Whiteboard chat client " + client.getName());
 
-        /*setMinimumSize(SCREENSIZE);
-        setMaximumSize(SCREENSIZE);
-        setPreferredSize(SCREENSIZE);*/
+        setMinimumSize(SCREENSIZE);
+        //setMaximumSize(SCREENSIZE);
+        setPreferredSize(SCREENSIZE);
 
         whiteboardPanel = new WhiteboardView();
         usersPanel = new JPanel();
@@ -70,21 +72,23 @@ public class WhiteboardClientView extends JFrame implements Observer{
         DrawingSelector controller = new DrawingSelector(client, this, whiteboardPanel);
         makeToolPanel(toolPanel, controller);
 
-        whiteboardPanel.setBackground(Color.PINK);
         usersPanel.setBackground(Color.orange);
-        toolPanel.setBackground(Color.CYAN);
 
         setLayout( new BorderLayout());
         this.add(whiteboardPanel, BorderLayout.CENTER);
-        this.add(usersPanel, BorderLayout.EAST);
-        this.add(toolPanel, BorderLayout.SOUTH);
+        this.add(usersPanel, BorderLayout.SOUTH);
+        this.add(toolPanel, BorderLayout.EAST);
 
         pack();
 
         setVisible(true);
     }
 
+    //creates the toolpanel
     private void makeToolPanel(JPanel toolPanel, DrawingSelector controller){
+
+        toolPanel.setLayout(new BoxLayout(toolPanel, BoxLayout.Y_AXIS));
+
         JButton lineButton = new JButton("Line");
         lineButton.setActionCommand("LINE");
         lineButton.addActionListener(controller);
@@ -138,25 +142,28 @@ public class WhiteboardClientView extends JFrame implements Observer{
         }
     }
 
+    //updates the visible list of users
     public void ShowUsers(List<User> users){
-        setVisible(false);
+        usersPanel.setVisible(false);
         usersPanel.removeAll();
+        usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.X_AXIS));
 
-        usersPanel.setBounds(0, 0, 60, 500);
-        usersPanel.setLayout(new GridLayout(16, 1));
+        synchronized (usersPanel){
+            for (User user: users){
+                System.out.println(user.getName());
+                JPanel userPanel = new JPanel();
+                userPanel.setBackground(user.getColor());
+                JLabel nameLabel = new JLabel(user.getName());
+                userPanel.add(nameLabel);
 
-        for (User user: users){
-            System.out.println(user.getName());
-            JPanel userPanel = new JPanel();
-
-            userPanel.setBackground(user.getColor());
-            userPanel.add(new JLabel(user.getName()));
-
-            usersPanel.add(userPanel);
+                usersPanel.add(userPanel);
+            }
         }
-        setVisible(true);
+        usersPanel.setVisible(true);
+
     }
 
+    //sets up the connetion to the server
     public void initConnection(String address, int port, User user){
 
         client = new WhiteboardClient(address, port, user);

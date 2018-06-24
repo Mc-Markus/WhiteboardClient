@@ -26,7 +26,7 @@ public class ColorSelector extends JPanel implements ChangeListener, ActionListe
 
     private Color selectedColor;
 
-    //deze klasse geeft de gebruiker de mogelijkheid, om een kleur te kiezen
+    //Simple colorSelector, better design than default ColorPicker
     public ColorSelector(){
         setLayout(new GridLayout(4, 2));
 
@@ -49,7 +49,7 @@ public class ColorSelector extends JPanel implements ChangeListener, ActionListe
         this.add(colorPreview);
     }
 
-    //deze methode genereerd een random kleur
+    //Generates a random color
     private Color generateRandomColor(){
         Random rnd = new Random();
         int red = rnd.nextInt(255);
@@ -61,7 +61,7 @@ public class ColorSelector extends JPanel implements ChangeListener, ActionListe
         return new Color(red, blue, green);
     }
 
-    //deze methode update de sliders naar de waardes van de random kleur
+    //updates the sliderposistion after it has been changed by pressing the random color button
     private void updateSliders(int red, int blue, int green){
         redSlider.setValue(red);
         greenSlider.setValue(green);
@@ -74,15 +74,14 @@ public class ColorSelector extends JPanel implements ChangeListener, ActionListe
     }
 
 
-    //deze methode zorgt ervoor dat als een slider veranderd de kleur en de preview wordt aangepast
+    //updates the live color preview when the value of the sliders is changed
     @Override
     public void stateChanged(ChangeEvent e) {
         this.selectedColor = new Color(redSlider.getValue(), greenSlider.getValue(), blueSlider.getValue());
         colorPreview.setBackground(selectedColor);
     }
 
-    //deze methode zorgt ervoor dat als er op de knop wordt gedrukt er een random kleur wordt gegenereerd
-    // en dat de geselecteerde kleur en de preview worden geupdate
+    //updates the live color preview when you press the random color button
     @Override
     public void actionPerformed(ActionEvent e) {
         this.selectedColor = generateRandomColor();

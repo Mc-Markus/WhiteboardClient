@@ -29,8 +29,16 @@ public class TextController implements DrawingController, MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         location = e.getPoint();
-        text = "ansjovis";
-        sendDrawing();
+
+        Object object = JOptionPane.showInputDialog(null, "Enter your message:", "Write message",
+                JOptionPane.PLAIN_MESSAGE, null, null, "");
+
+        if(object!= null){
+            text = (String)object;
+            if(text.length() > 0){
+                sendDrawing();
+            }
+        }
     }
 
     @Override

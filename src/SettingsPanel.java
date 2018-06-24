@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.Socket;
 
 /**
  * Created by mark on 11/06/2017.
@@ -23,10 +21,11 @@ public class SettingsPanel extends JPanel implements ActionListener{
 
     private JPanel fields = new JPanel(new GridLayout(3,2));
 
-    private ColorSelector colorPicker = new ColorSelector();
+    private ColorSelector colorSelector = new ColorSelector();
 
     private WhiteboardClientView view;
 
+    //SettingsPanel is for setting the ip, port, name and color
     public SettingsPanel(WhiteboardClientView view){
         this.view = view;
 
@@ -45,7 +44,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
 
         this.add(fields);
 
-        this.add(colorPicker);
+        this.add(colorSelector);
 
         this.add(saveButton);
     }
@@ -53,7 +52,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(usernameField.getText() != null && ipAddressField.getText() != null && portField.getText() != null){
-            view.initConnection(ipAddressField.getText(), Integer.parseInt(portField.getText()), new User(usernameField.getText(), colorPicker.getSelectedColor()));
+            view.initConnection(ipAddressField.getText(), Integer.parseInt(portField.getText()), new User(usernameField.getText(), colorSelector.getSelectedColor()));
         }
     }
 }
