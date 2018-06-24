@@ -36,6 +36,25 @@ public class DrawingSelector implements ActionListener{
             case "TEXT":
                 changeListener(new TextController(client));
                 break;
+            case "SQUARE":
+                changeListener(new StampController(client, e.getActionCommand()));
+                break;
+            case "CIRCLE":
+                changeListener(new StampController(client, e.getActionCommand()));
+                break;
+            case "RING":
+                changeListener(new StampController(client, e.getActionCommand()));
+                break;
+            case "SMILEY":
+                changeListener(new StampController(client, e.getActionCommand()));
+                break;
+            case "SOLID":
+                changeListener(new StampController(client, e.getActionCommand()));
+                break;
+            case "LIE":
+                changeListener(new StampController(client, e.getActionCommand()));
+                break;
+
         }
     }
 }

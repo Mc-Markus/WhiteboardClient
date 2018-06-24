@@ -93,8 +93,38 @@ public class WhiteboardClientView extends JFrame implements Observer{
         textButton.setActionCommand("TEXT");
         textButton.addActionListener(controller);
 
+        JButton squareStampButton = new JButton("Square");
+        squareStampButton.setActionCommand("SQUARE");
+        squareStampButton.addActionListener(controller);
+
+        JButton circleStampButton = new JButton("Circle");
+        circleStampButton.setActionCommand("CIRCLE");
+        circleStampButton.addActionListener(controller);
+
+        JButton ringStampButton = new JButton("Ring");
+        ringStampButton.setActionCommand("RING");
+        ringStampButton.addActionListener(controller);
+
+        JButton smileyStampButton = new JButton("Smiley");
+        smileyStampButton.setActionCommand("SMILEY");
+        smileyStampButton.addActionListener(controller);
+
+        JButton solidStampButton = new JButton("Solid");
+        solidStampButton.setActionCommand("SOLID");
+        solidStampButton.addActionListener(controller);
+
+        JButton lieStampButton = new JButton("LIE");
+        lieStampButton.setActionCommand("LIE");
+        lieStampButton.addActionListener(controller);
+
         toolPanel.add(lineButton);
         toolPanel.add(textButton);
+        toolPanel.add(squareStampButton);
+        toolPanel.add(circleStampButton);
+        toolPanel.add(ringStampButton);
+        toolPanel.add(smileyStampButton);
+        toolPanel.add(solidStampButton);
+        toolPanel.add(lieStampButton);
     }
 
     @Override
