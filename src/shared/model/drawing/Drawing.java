@@ -1,6 +1,7 @@
 package shared.model.drawing;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Point;
 
 public abstract class Drawing implements Action
 {
@@ -26,6 +27,4 @@ public abstract class Drawing implements Action
     {
         return kleur;
     }
-
-    public abstract void draw(Graphics graphics);
 }

@@ -1,6 +1,6 @@
 package shared.model.drawing;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class TextDrawing extends Drawing
 {
@@ -16,10 +16,5 @@ public class TextDrawing extends Drawing
     public String getText()
     {
         return text;
-    }
-
-    @Override
-    public void draw(Graphics graphics) {
-        graphics.drawString(text, location.x, location.y);
     }
 }

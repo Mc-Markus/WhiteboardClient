@@ -17,12 +17,12 @@ public class StampController implements DrawingController, MouseListener {
     private Point location;
     private boolean[][] stamp;
 
-    private final String SQUAREPATH = "/blokje.stp";
-    private final String CIRCLEPATH = "/cirkel.stp";
-    private final String RINGPATH = "/rondje.stp";
-    private final String SMILEYPATH = "/smiley.stp";
-    private final String SOLIDPATH = "/solid.stp";
-    private final String LIEPATH = "/TheLie.stp";
+    private final String SQUAREPATH = "/stamps/blokje.stp";
+    private final String CIRCLEPATH = "/stamps/cirkel.stp";
+    private final String RINGPATH = "/stamps/rondje.stp";
+    private final String SMILEYPATH = "/stamps/smiley.stp";
+    private final String SOLIDPATH = "/stamps/solid.stp";
+    private final String LIEPATH = "stamps/TheLie.stp";
 
 
     public StampController(WhiteboardClient client, String stampType) {
@@ -87,7 +87,8 @@ public class StampController implements DrawingController, MouseListener {
 
     public void loadStamp(String path){
         try {
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream(path));
+            //ObjectInputStream input = new ObjectInputStream(new FileInputStream(path));
+            ObjectInputStream input = new ObjectInputStream(getClass().getResourceAsStream(path));
             stamp = (boolean[][])input.readObject();
             input.close();
         } catch (IOException | ClassNotFoundException e) {
