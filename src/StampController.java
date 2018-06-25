@@ -35,7 +35,8 @@ public class StampController implements DrawingController, MouseListener {
             case "CIRCLE":
                 loadStamp(CIRCLEPATH);
                 break;
-            case "RING":
+            //aangepast bij vraag 1
+            case "ROUND":
                 loadStamp(RINGPATH);
                 break;
             case "SMILEY":

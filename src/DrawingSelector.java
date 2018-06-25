@@ -43,7 +43,8 @@ public class DrawingSelector implements ActionListener{
             case "CIRCLE":
                 changeListener(new StampController(client, e.getActionCommand()));
                 break;
-            case "RING":
+            //aangepast bij vraag 1
+            case "ROUND":
                 changeListener(new StampController(client, e.getActionCommand()));
                 break;
             case "SMILEY":
@@ -55,7 +56,10 @@ public class DrawingSelector implements ActionListener{
             case "LIE":
                 changeListener(new StampController(client, e.getActionCommand()));
                 break;
-
+            //toegevoegd bij vraag 1
+            case "RING":
+                changeListener(new RingController(client));
+                break;
         }
     }
 }

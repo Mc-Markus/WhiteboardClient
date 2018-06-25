@@ -105,8 +105,9 @@ public class WhiteboardClientView extends JFrame implements Observer{
         circleStampButton.setActionCommand("CIRCLE");
         circleStampButton.addActionListener(controller);
 
-        JButton ringStampButton = new JButton("Ring");
-        ringStampButton.setActionCommand("RING");
+        //aangepast vanwege vraag 1
+        JButton ringStampButton = new JButton("Round");
+        ringStampButton.setActionCommand("ROUND");
         ringStampButton.addActionListener(controller);
 
         JButton smileyStampButton = new JButton("Smiley");
@@ -121,6 +122,12 @@ public class WhiteboardClientView extends JFrame implements Observer{
         lieStampButton.setActionCommand("LIE");
         lieStampButton.addActionListener(controller);
 
+        //toegevoegd bij vraag 1
+        JButton ringButton = new JButton("Ring");
+        ringButton.setActionCommand("RING");
+        ringButton.addActionListener(controller);
+
+
         toolPanel.add(lineButton);
         toolPanel.add(textButton);
         toolPanel.add(squareStampButton);
@@ -129,6 +136,7 @@ public class WhiteboardClientView extends JFrame implements Observer{
         toolPanel.add(smileyStampButton);
         toolPanel.add(solidStampButton);
         toolPanel.add(lieStampButton);
+        toolPanel.add(ringButton);
     }
 
     @Override
